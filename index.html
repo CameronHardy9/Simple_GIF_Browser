@@ -3,37 +3,27 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JavaScript APIs</title>
+        <script src="app.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+        <title>Simple GIF Browser</title>
     </head>
     <body>
-        <main
-            style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-            "
-        >
-            <div>
-                <h1>JavaScript APIs</h1>
-                <p>
-                    Open the Browser Console to view your work (Right-Click =>
-                    Inspect or fn+F12)
-                </p>
-                <div id="inputContainer"></div>
+        <main>
+            <div class="container">
+                <div>Simple GIF Browser</div>
+                <div class="inputContainer"></div>
                     <label for="input">Search for a GIF:</label>
-                    <input type="text" id="input" placeholder="Funny...">
+                    <input type="text" id="input">
                     <button class="submit">Search</button>
-                <div id="imageContainer" style="max-width: 680px">
-                    <img
-                        src="#"
-                        alt="Giphy Selection"
-                        style="width: 100%; height: auto"
-                    />
+                <div class="imageContainer" style="max-width: 680px" hidden>
+                    <button class="previous"></button>
+                    <div class="gif">
+                        <img src="" alt="">
+                        <div class="imgURL"></div>
+                    </div>
+                    <button class="next"></button>
                 </div>
             </div>
         </main>
-
-        <script src="app.js"></script>
     </body>
 </html>
