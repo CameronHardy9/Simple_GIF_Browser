@@ -9,5 +9,20 @@ main {
 }
 
 .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 680px;
+}
+
+.gif {
+    position: relative;
+}
+
+.attribution {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    bottom: 0;
+    right: 0;
 }

@@ -3,7 +3,7 @@
 const _apiKey = "uX6xKR7FNjOPuvsJ6dShPV1o3crQBbP7";
 const giphyURL = "https://api.giphy.com/v1/gifs/translate";
 const button = document.querySelector(".submit");
-const img = document.querySelector(".gif > img");
+const img = document.querySelector(".gif");
 const imgURL = document.querySelector(".imgURL");
 const search = document.querySelector("#input");
 const imgContainer = document.querySelector(".imageContainer");
