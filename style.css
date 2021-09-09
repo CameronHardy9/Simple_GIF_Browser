@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 main {
@@ -12,11 +14,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 680px;
 }
 
-.gif {
+.gifGen {
     position: relative;
+    max-width: 680px;
 }
 
 .attribution {
