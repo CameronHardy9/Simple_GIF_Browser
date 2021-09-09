@@ -14,7 +14,7 @@ let viewPosition = 0;
 
 
 //pulls popular searches from giphy api and adds them as search placeholder
-window.onload = searchSuggestion();
+//window.onload = searchSuggestion();
 
 //event listener for pressing enter to submit input
 search.addEventListener("keyup", (key) => {
@@ -76,6 +76,8 @@ function newSearch() {
     })
     .then((data) => {
             viewPosition = viewHistory.length;
+            next.hidden = false;
+            previous.hidden = false;
             imgContainer.hidden = false;
             img.src = data.data.images.original.url;
             imgURL.innerHTML = `<a href="${data.data.url}" target="_blank">View on Giphy!</a>`;
