@@ -28,6 +28,7 @@ window.addEventListener("keyup", (key) => {
     if (key.key === "ArrowLeft") {
         previous.click();
     } else if (key.key === "ArrowRight") {
+        next.onclick();
     }
 })
 
