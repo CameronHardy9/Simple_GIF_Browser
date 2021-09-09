@@ -28,3 +28,23 @@ main {
     bottom: 0;
     right: 0;
 }
+
+.next {
+    border: none;
+    background-color: transparent;
+}
+
+.next > svg {
+    width: 100px;
+    height: 100px;
+}
+
+.previous {
+    border: none;
+    background-color: transparent;
+}
+
+.previous > svg {
+    width: 100px;
+    height: 100px;
+}
