@@ -4,8 +4,27 @@
     padding: 0;
 }
 
+html {
+    font-family: 'Azeret Mono', monospace;
+}
+
+.fontOne {
+    font-weight: 100;
+}
+
+.fontFive {
+    font-weight: 500;
+}
+
 main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
