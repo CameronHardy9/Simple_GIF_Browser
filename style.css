@@ -13,6 +13,7 @@
     font-family: 'Azeret Mono', monospace;
 }
 
+
 h1 {
     margin: 20px 0px;
     color: var(--color-2);
@@ -183,4 +184,54 @@ h1 {
 .previous > svg:active {
     top: 5px;
     filter: none;
+}
+
+@media only screen and (min-width: 1025px) {
+
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .imageContainer {
+        flex-wrap: wrap;
+    }
+    
+    .reveal-gifGen{
+        width: 270px;
+        height: 270px;
+    }
+
+    .gif {
+        max-width: 230px;
+        max-height: 150px;
+    }
+
+    .previous {
+        order: 1;
+    }
+
+    .next {
+        order: 2;
+    }
+
+    .previous > svg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .next > svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media only screen and (max-width: 319px) {
+
 }
