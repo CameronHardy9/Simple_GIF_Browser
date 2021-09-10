@@ -122,11 +122,10 @@ h1 {
 }
 
 .attribution {
-    position: absolute;
-    width: 40px;
+    width: 200px;
     height: auto;
-    bottom: 0;
-    right: 0;
+    margin-top: auto;
+    margin-bottom: 20px;
 }
 
 .imgDetails {
