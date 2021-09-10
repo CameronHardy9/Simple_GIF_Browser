@@ -3,32 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="app.js" defer></script>
+        <!-- <script src="app.js" defer></script> -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@100;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@100;300;500&display=swap" rel="stylesheet">        <link rel="stylesheet" href="style.css">
         <link rel="shortcut icon" href="./assets/api.ico" type="image/x-icon">
         <title>Simple GIF Browser</title>
     </head>
     <body>
-        <main>
-            <div class="container">
-                <h1 class="fontFive">Simple GIF Browser</h1>
-                <div class="inputContainer">
-                    <label class="fontOne" for="input">Search for a GIF:</label>
+        <main class="mainContainer">
+            <h1 class="fontFive">Simple GIF Browser</h1>
+            <div class="inputContainer">
+                <label class="label fontThree" for="input">Search for a GIF:</label>
+                <div class="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     <input type="text" id="input">
-                    <button class="submit">Search</button>
                 </div>
-                <div class="imageContainer" hidden>
-                    <button hidden class="previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
-                    <div class="gifGen">
-                        <img class="gif" src="" alt="">
-                        <img hidden class="attribution" src="./assets/Poweredby_100px_Badge.gif" alt="">
-                        <div class="imgURL"></div>
-                    </div>
-                    <button hidden class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+                <button class="submit fontOne">Search</button>
+            </div>
+            <div class="imageContainer" hidden>
+                <button class="previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></button>
+                <div class="gifGen">
+                    <img class="gif" src="" alt="">
+                    <img hidden class="attribution" src="./assets/Poweredby_100px_Badge.gif" alt="">
+                    <div class="imgURL"></div>
                 </div>
+                <button class="next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
             </div>
         </main>
     </body>
