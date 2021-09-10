@@ -9,6 +9,7 @@ const img = document.querySelector(".gif");
 const imgURL = document.querySelector(".imgURL");
 const search = document.querySelector("#input");
 const imgContainer = document.querySelector(".imageContainer");
+const gifGen = document.querySelector(".gifGen");
 const viewHistory = [];
 let viewPosition = 0;
 
@@ -75,16 +76,18 @@ function newSearch() {
     .then((data) => {
         return data.json();
     })
-    .then((data) => {
+    .then((result) => {
             viewPosition = viewHistory.length;
             next.hidden = false;
             previous.hidden = false;
             imgContainer.hidden = false;
-            img.src = data.data.images.original.url;
-            imgURL.innerHTML = `<a href="${data.data.url}" target="_blank">View on Giphy!</a>`;
+            gifGen.classList = "reveal-gifGen";
+            img.src = result.data.images.original.url;
+            imgURL.href = result.data.url;
+            imgURL.hidden = false;
             viewHistory.push({
-                image: data.data.images.original.url,
-                imageLink: data.data.url
+                image: result.data.images.original.url,
+                imageLink: result.data.url
             });
         })
         .catch((err) => {
