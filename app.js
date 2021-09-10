@@ -15,7 +15,7 @@ let viewPosition = 0;
 
 
 //pulls popular searches from giphy api and adds them as search placeholder
-//window.onload = searchSuggestion();
+window.onload = searchSuggestion();
 
 //event listener for pressing enter to submit input
 search.addEventListener("keyup", (key) => {
@@ -99,14 +99,14 @@ function nextItem() {
     viewPosition ++;
     const nextItem = viewHistory[viewPosition];
     img.src = nextItem.image;
-    imgURL.innerHTML = `<a href="${nextItem.imageLink}" target="_blank">View on Giphy!</a>`
+    imgURL.href = result.data.url;
 }
 
 function previousItem() {
     viewPosition --;
     const previousItem = viewHistory[viewPosition];
     img.src = previousItem.image;
-    imgURL.innerHTML = `<a href="${previousItem.imageLink}" target="_blank">View on Giphy!</a>`
+    imgURL.href = result.data.url;
 }
 
 //api call to generate search suggestion based on most searched items from giphy
