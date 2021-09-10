@@ -67,13 +67,14 @@ h1 {
     height: 30px;
     width: 30px;
     fill: var(--color-3);
+    margin-right: 10px;
 }
 
 #input {
     color: var(--color-2);
     border: none;
     height: 30px;
-    width: 200px;
+    width: 250px;
     font-size: 16px;
 }
 
