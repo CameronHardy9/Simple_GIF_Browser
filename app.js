@@ -77,36 +77,40 @@ function newSearch() {
         return data.json();
     })
     .then((result) => {
-            viewPosition = viewHistory.length;
-            next.hidden = false;
-            previous.hidden = false;
-            imgContainer.hidden = false;
-            gifGen.classList = "reveal-gifGen";
-            img.src = result.data.images.original.url;
-            imgURL.href = result.data.url;
-            imgURL.hidden = false;
-            viewHistory.push({
-                image: result.data.images.original.url,
-                imageLink: result.data.url
-            });
-        })
-        .catch((err) => {
+        viewPosition = viewHistory.length;
+        next.hidden = false;
+        previous.hidden = false;
+        imgContainer.hidden = false;
+        gifGen.classList = "reveal-gifGen";
+        img.src = result.data.images.original.url;
+        imgURL.href = result.data.url;
+        imgURL.hidden = false;
+        viewHistory.push({
+            image: result.data.images.original.url,
+            imageLink: result.data.url
+        });
+    })
+    .catch((err) => {
+        if(img.src == undefined){
+            throw new Error("GIF is not available. Please try again.");
+        } else {
             throw new Error(err);
-        })
+        }
+    })
 }
 
 function nextItem() {
     viewPosition ++;
     const nextItem = viewHistory[viewPosition];
     img.src = nextItem.image;
-    imgURL.href = result.data.url;
+    imgURL.href = nextItem.imageLink;
 }
 
 function previousItem() {
     viewPosition --;
     const previousItem = viewHistory[viewPosition];
     img.src = previousItem.image;
-    imgURL.href = result.data.url;
+    imgURL.href = previousItem.imageLink;
 }
 
 //api call to generate search suggestion based on most searched items from giphy
