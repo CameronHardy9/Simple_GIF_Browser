@@ -1,7 +1,9 @@
 "use strict";
 
-const _apiKey = "uX6xKR7FNjOPuvsJ6dShPV1o3crQBbP7";
-const giphyURL = "https://api.giphy.com/v1/gifs/translate";
+const _kuttItApiKey = "oAhDjGb9I_1tlLsMyNvgE9QOc1JFtc9cR1dIUa5A"
+const _kuttItURL = "https://kutt.it/api/v2/links"
+const _giphyApiKey = "uX6xKR7FNjOPuvsJ6dShPV1o3crQBbP7";
+const _giphyURL = "https://api.giphy.com/v1/gifs/translate";
 const button = document.querySelector(".submit");
 const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
@@ -10,9 +12,11 @@ const imgURL = document.querySelector(".imgURL");
 const search = document.querySelector("#input");
 const imgContainer = document.querySelector(".imageContainer");
 const gifGen = document.querySelector(".gifGen");
+const clip = document.querySelector(".clip");
 const viewHistory = [];
 let viewPosition = 0;
 
+fetch(`${_kuttItURL}`) //Not sure what url to use or where to put key
 
 //pulls popular searches from giphy api and adds them as search placeholder
 window.onload = searchSuggestion();
@@ -43,6 +47,10 @@ button.onclick = () => {
     
 }
 
+clip.onclick = () => {
+    navigator.clipboard.writeText(viewHistory[viewPosition].image);
+}
+
 //cycles to next random gif under same search param
 next.onclick = () => {
     if (viewPosition == viewHistory.length - 1) {
@@ -70,7 +78,7 @@ previous.onclick = () => {
 
 //performs fetch of gif from giphy based on search param, then stores gif data in array for future reference without additional api calls
 function newSearch() {
-    fetch(`${giphyURL}?api_key=${_apiKey}&s=${search.value}`, {
+    fetch(`${_giphyURL}?api_key=${_giphyApiKey}&s=${search.value}`, {
         mode: "cors"
     })
     .then((data) => {
@@ -115,7 +123,7 @@ function previousItem() {
 
 //api call to generate search suggestion based on most searched items from giphy
 function searchSuggestion () {
-    fetch((`https://api.giphy.com/v1/trending/searches?api_key=${_apiKey}`), {
+    fetch((`https://api.giphy.com/v1/trending/searches?api_key=${_giphyApiKey}`), {
         mode: "cors"
     })
         .then((data) => {
