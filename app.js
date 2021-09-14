@@ -1,7 +1,6 @@
 "use strict";
 
-const _kuttItApiKey = "oAhDjGb9I_1tlLsMyNvgE9QOc1JFtc9cR1dIUa5A"
-const _kuttItURL = "https://kutt.it/api/v2/links"
+const _shrtcoURL = "https://api.shrtco.de/v2/shorten?url="
 const _giphyApiKey = "uX6xKR7FNjOPuvsJ6dShPV1o3crQBbP7";
 const _giphyURL = "https://api.giphy.com/v1/gifs/translate";
 const button = document.querySelector(".submit");
@@ -15,8 +14,6 @@ const gifGen = document.querySelector(".gifGen");
 const clip = document.querySelector(".clip");
 const viewHistory = [];
 let viewPosition = 0;
-
-fetch(`${_kuttItURL}`) //Not sure what url to use or where to put key
 
 //pulls popular searches from giphy api and adds them as search placeholder
 window.onload = searchSuggestion();
@@ -47,8 +44,9 @@ button.onclick = () => {
     
 }
 
+//Clipboard API
 clip.onclick = () => {
-    navigator.clipboard.writeText(viewHistory[viewPosition].image);
+    navigator.clipboard.writeText(viewHistory[viewPosition].clipLink);
 }
 
 //cycles to next random gif under same search param
@@ -95,7 +93,8 @@ function newSearch() {
         imgURL.hidden = false;
         viewHistory.push({
             image: result.data.images.original.url,
-            imageLink: result.data.url
+            imageLink: result.data.url,
+            clipLink: shortURL(result.data.images.original.url)
         });
     })
     .catch((err) => {
@@ -119,6 +118,24 @@ function previousItem() {
     const previousItem = viewHistory[viewPosition];
     img.src = previousItem.image;
     imgURL.href = previousItem.imageLink;
+}
+
+//URL shortener for clip feature
+function shortURL(url) {
+    let output;
+    fetch(`${_shrtcoURL}${url}`, {
+        mode: "cors"
+    })
+    .then((data) => {
+        return data.json();
+    })
+    .then((result) => {
+        viewHistory[viewPosition].clipLink = result.result.short_link;
+    })
+    .catch((err) => {
+        throw new Error(err);
+    })
+    return output;
 }
 
 //api call to generate search suggestion based on most searched items from giphy
