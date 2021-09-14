@@ -67,7 +67,7 @@ h1 {
     height: 30px;
     width: 30px;
     fill: var(--color-3);
-    margin-right: 10px;
+    padding-right: 10px;
 }
 
 #input {
@@ -116,11 +116,13 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: var(--color-5);
 }
 
 .gif {
     max-width: 480px;
     max-height: 400px;
+    margin: auto;
 }
 
 .attribution {
@@ -131,12 +133,16 @@ h1 {
 }
 
 .imgDetails {
-    margin-top: 20px;
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .imgURL {
     text-decoration: none;
     color: var(--color-2);
+    margin-right: 10px;
 }
 
 .imgURL:active {
@@ -185,6 +191,46 @@ h1 {
 .previous > svg:active {
     top: 5px;
     filter: none;
+}
+
+.clipGif {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--color-3);
+    background-color: white;
+    
+}
+
+.shortURL {
+    border: none;
+    color: var(--color-2);
+    background-color: transparent;
+    height: 30px;
+    width: 200px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.shortURL:focus {
+    outline: none;
+}
+
+.clip {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+}
+
+.clip:active {
+    background-color: var(--color-4);
+}
+
+.clip > svg {
+    color: var(--color-3);
+    width: 20px;
+    height: 20px;
 }
 
 @media only screen and (min-width: 1025px) {
