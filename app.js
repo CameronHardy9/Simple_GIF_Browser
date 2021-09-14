@@ -153,5 +153,8 @@ function searchSuggestion() {
             search.placeholder = `${
                 data.data[Math.floor(Math.random() * data.data.length)]
             }...`;
+        })
+        .catch((err) => {
+            throw new Error(err);
         });
 }
