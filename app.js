@@ -12,20 +12,21 @@ const search = document.querySelector("#input");
 const imgContainer = document.querySelector(".imageContainer");
 const gifGen = document.querySelector(".gifGen");
 const clip = document.querySelector(".clip");
+const shortURL = document.querySelector(".shortURL");
 const viewHistory = [];
 let viewPosition = 0;
 
-//pulls popular searches from giphy api and adds them as search placeholder
+//Pulls popular searches from giphy api and adds them as search placeholder
 window.onload = searchSuggestion();
 
-//event listener for pressing enter to submit input
+//Event listener for pressing enter to submit input
 search.addEventListener("keyup", (key) => {
     if (key.key === "Enter"){
         button.click();
     }
 })
 
-//event listener for navigating forward and back through gifs
+//Event listener for navigating forward and back through gifs
 window.addEventListener("keyup", (key) => {
     if (key.key === "ArrowLeft") {
         previous.click();
@@ -34,7 +35,7 @@ window.addEventListener("keyup", (key) => {
     }
 })
 
-//checks for user input - then searches giphy database using input
+//Checks for user input - then searches giphy database using input
 button.onclick = () => {
     if(!search.value) {
         //TODO: Insert error for no text
@@ -49,7 +50,7 @@ clip.onclick = () => {
     navigator.clipboard.writeText(viewHistory[viewPosition].clipLink);
 }
 
-//cycles to next random gif under same search param
+//Cycles to next random gif under same search param
 next.onclick = () => {
     if (viewPosition == viewHistory.length - 1) {
         if(!search.value) {
@@ -74,7 +75,7 @@ previous.onclick = () => {
 
 // -- FUNCTIONS --
 
-//performs fetch of gif from giphy based on search param, then stores gif data in array for future reference without additional api calls
+//Performs fetch of gif from giphy based on search param, then stores gif data in array for future reference without additional api calls
 function newSearch() {
     fetch(`${_giphyURL}?api_key=${_giphyApiKey}&s=${search.value}`, {
         mode: "cors"
@@ -84,18 +85,19 @@ function newSearch() {
     })
     .then((result) => {
         viewPosition = viewHistory.length;
+        viewHistory.push({
+            image: result.data.images.original.url,
+            imageLink: result.data.url,
+            clipLink: shrinkURL(result.data.images.original.url)
+        });
         next.hidden = false;
         previous.hidden = false;
         imgContainer.hidden = false;
         gifGen.classList = "reveal-gifGen";
-        img.src = result.data.images.original.url;
-        imgURL.href = result.data.url;
+        img.src = viewHistory[viewPosition].image;
+        imgURL.href = viewHistory[viewPosition].imageLink;
+        shortURL.value = viewHistory[viewPosition].clipLink;
         imgURL.hidden = false;
-        viewHistory.push({
-            image: result.data.images.original.url,
-            imageLink: result.data.url,
-            clipLink: shortURL(result.data.images.original.url)
-        });
     })
     .catch((err) => {
         if(img.src == undefined){
@@ -121,7 +123,7 @@ function previousItem() {
 }
 
 //URL shortener for clip feature
-function shortURL(url) {
+function shrinkURL(url) {
     let output;
     fetch(`${_shrtcoURL}${url}`, {
         mode: "cors"
@@ -138,7 +140,7 @@ function shortURL(url) {
     return output;
 }
 
-//api call to generate search suggestion based on most searched items from giphy
+//API call to generate search suggestions based on most searched items from giphy
 function searchSuggestion () {
     fetch((`https://api.giphy.com/v1/trending/searches?api_key=${_giphyApiKey}`), {
         mode: "cors"
