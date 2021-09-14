@@ -90,13 +90,13 @@ function newSearch() {
             imageLink: result.data.url,
             clipLink: shrinkURL(result.data.images.original.url)
         });
+        img.src = viewHistory[viewPosition].image;
+        imgURL.href = viewHistory[viewPosition].imageLink;
+        shortURL.value = viewHistory[viewPosition].clipLink;
         next.hidden = false;
         previous.hidden = false;
         imgContainer.hidden = false;
         gifGen.classList = "reveal-gifGen";
-        img.src = viewHistory[viewPosition].image;
-        imgURL.href = viewHistory[viewPosition].imageLink;
-        shortURL.value = viewHistory[viewPosition].clipLink;
         imgURL.hidden = false;
     })
     .catch((err) => {
@@ -113,6 +113,8 @@ function nextItem() {
     const nextItem = viewHistory[viewPosition];
     img.src = nextItem.image;
     imgURL.href = nextItem.imageLink;
+    shortURL.value = nextItem.clipLink
+    
 }
 
 function previousItem() {
@@ -120,6 +122,7 @@ function previousItem() {
     const previousItem = viewHistory[viewPosition];
     img.src = previousItem.image;
     imgURL.href = previousItem.imageLink;
+    shortURL.value = previousItem.clipLink
 }
 
 //URL shortener for clip feature
