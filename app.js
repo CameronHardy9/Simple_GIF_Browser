@@ -79,9 +79,8 @@ async function newSearch() {
         let data = await fetch(`${_giphyURL}?api_key=${_giphyApiKey}&s=${search.value}`, {
         mode: "cors",
         })
-        let result = data.json(); 
+        let result = await data.json(); 
         viewPosition = viewHistory.length;
-        console.log(result.data.images.original.url);
         viewHistory.push({
             image: result.data.images.original.url,
             imageLink: result.data.url,
