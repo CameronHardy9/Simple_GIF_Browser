@@ -74,36 +74,36 @@ previous.onclick = () => {
 // -- FUNCTIONS --
 
 //Performs fetch of gif from giphy based on search param, then stores gif data in array for future reference without additional api calls
-function newSearch() {
-    fetch(`${_giphyURL}?api_key=${_giphyApiKey}&s=${search.value}`, {
+async function newSearch() {
+    try{
+        let data = await fetch(`${_giphyURL}?api_key=${_giphyApiKey}&s=${search.value}`, {
         mode: "cors",
-    })
-        .then((data) => {
-            return data.json();
         })
-        .then((result) => {
-            viewPosition = viewHistory.length;
-            viewHistory.push({
-                image: result.data.images.original.url,
-                imageLink: result.data.url,
-                clipLink: shrinkURL(result.data.images.original.url),
-            });
-            img.src = viewHistory[viewPosition].image;
-            imgURL.href = viewHistory[viewPosition].imageLink;
-            shortURL.value = viewHistory[viewPosition].clipLink;
-            next.hidden = false;
-            previous.hidden = false;
-            imgContainer.hidden = false;
-            gifGen.classList = "reveal-gifGen";
-            imgURL.hidden = false;
-        })
-        .catch((err) => {
-            if (img.src == undefined) {
-                throw new Error("GIF is not available. Please try again.");
-            } else {
-                throw new Error(err);
-            }
+        let result = data.json(); 
+        viewPosition = viewHistory.length;
+        console.log(result.data.images.original.url);
+        viewHistory.push({
+            image: result.data.images.original.url,
+            imageLink: result.data.url,
+            clipLink: null,
         });
+        await shrinkURL(result.data.images.original.url),
+        img.src = viewHistory[viewPosition].image;
+        imgURL.href = viewHistory[viewPosition].imageLink;
+        shortURL.value = viewHistory[viewPosition].clipLink;
+        next.hidden = false;
+        previous.hidden = false;
+        imgContainer.hidden = false;
+        gifGen.classList = "reveal-gifGen";
+        imgURL.hidden = false;
+    }
+    catch(err) {
+        if (img.src == undefined) {
+            throw new Error("GIF is not available. Please try again.");
+        } else {
+            throw new Error(err);
+        }
+    }
 }
 
 function nextItem() {
@@ -123,19 +123,17 @@ function previousItem() {
 }
 
 //URL shortener for clip feature
-function shrinkURL(url) {
-    fetch(`${_shrtcoURL}${url}`, {
-        mode: "cors",
-    })
-        .then((data) => {
-            return data.json();
+async function shrinkURL(url) {
+    try {
+        let data = await fetch(`${_shrtcoURL}${url}`, {
+            mode: "cors",
         })
-        .then((result) => {
+            let result = await data.json();
             viewHistory[viewPosition].clipLink = result.result.short_link;
-        })
-        .catch((err) => {
+    }
+        catch(err){
             throw new Error(err);
-        });
+        }
 }
 
 //API call to generate search suggestions based on most searched items from giphy
