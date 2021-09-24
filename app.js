@@ -47,6 +47,10 @@ button.onclick = () => {
 //Clipboard API
 clip.onclick = () => {
     navigator.clipboard.writeText(viewHistory[viewPosition].clipLink);
+    shortURL.value = "Copied!"
+    setTimeout(() => {
+        shortURL.value = viewHistory[viewPosition].clipLink;
+    }, 5000);
 };
 
 //Cycles to next random gif under same search param
